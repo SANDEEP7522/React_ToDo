@@ -1,14 +1,28 @@
+
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import AddTodo from './Components/AddTodo/AddTodo'
+import ToDoList from './Components/ToDoList/ToDoList'
+import ToDo from './Components/ToDo/ToDo'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState ([
+    // {id:1, Text: "todo1", isFinited:true},
+    // {id:1, Text: "todo1", isFinited:false},
+  
+
+  ])
+
+   function addTodos(todoText){
+    let nextId = todos.length + 1;
+    setTodos([...todos, {id: nextId, isFinited: false, text: todoText}]);
+   }
+
 
   return (
     <>
-    <h1>Sandep</h1>
+    <AddTodo  addTodos={addTodos} /> 
+    <ToDoList todos={todos} setTodos={setTodos}/>
     </>
   )
 }
