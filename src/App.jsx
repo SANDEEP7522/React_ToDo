@@ -1,31 +1,18 @@
 
-import { useEffect, useState } from 'react'
+import { useReducer } from 'react'
 import './App.css'
 import AddTodo from './Components/AddTodo/AddTodo'
 import ToDoList from './Components/ToDoList/ToDoList'
 import TodoContext from './Components/Context/TodoContext'
+import TodoReducer from './Components/Reducers/TodoReducer'
 
 function App() {
-  const [todos, setTodos] = useState ([
-    {id:1, Text: "todo1", isFinited:true},
-    {id:1, Text: "todo1", isFinited:false},
-  
+ const [todos, dispatch] = useReducer(TodoReducer, []);
 
-  ])
-
-  //  function addTodos(todoText){
-  //   let nextId = todos.length + 1;
-  //   setTodos([...todos, {id: nextId, isFinited: false, text: todoText}]);
-  //  }
-
-    // useEffect(() => {
-    //   console.log(todos);
-      
-    // })
 
   return (
     <>
-    <TodoContext.Provider value={{todos, setTodos}}>
+    <TodoContext.Provider value={{todos, dispatch}}>
       <AddTodo /> 
       <ToDoList />
     </TodoContext.Provider>

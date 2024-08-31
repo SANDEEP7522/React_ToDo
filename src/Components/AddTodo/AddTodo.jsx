@@ -3,20 +3,22 @@ import TodoContext from "../Context/TodoContext";
 
 
 function AddTodo(){
+const { dispatch } = useContext(TodoContext);
+const [todoText, setTodoText] = useState('');
 
-const {todos, setTodos} = useContext(TodoContext);
-
-   const [todoText, setTodoText] = useState('');
+  function addTodo(todoText){
+   dispatch({type: 'add_todo', payload: {todoText}});
+  }
   const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-          console.log('Enter key pressed');
           // Add your functionality here u want to add enter press ur data add
-          let nextId= todos.length + 1;
-         setTodos([...todos, {id: nextId, isFinited: false, text: todoText}]);
-         setTodoText(' '); 
+          addTodo(todoText);
+          setTodoText(' ');
         }
       };
 
+      
+      
   return(
       <>
         <input className="m-2 p-1 rounded-lg border-4 border-blue-400 "
@@ -28,12 +30,9 @@ const {todos, setTodos} = useContext(TodoContext);
         />
         <button className="m-2 p-1 rounded-lg"       
         onClick={() => {
-         let nextId= todos.length + 1;
-         setTodos([...todos, {id: nextId, isFinited: false, text: todoText}]);
+        addTodo(todoText);
           setTodoText(' '); 
-          
-        }}
-        >Submit</button>
+        }}>Submit</button>
       </>
    )
 
