@@ -28,7 +28,7 @@ const [todoText, setTodoText] = useState('');
             type="text"
             onKeyDown={handleKeyDown}
         />
-        <button className="m-2 p-1 rounded-lg"       
+        <button className="m-2 p-1 "       
         onClick={() => {
         addTodo(todoText);
           setTodoText(' '); 

@@ -1,6 +1,23 @@
 button, [role="button"] {
     cursor: pointer;
-    border: 2px solid blue;
+    
     margin: 2px;
     padding: 2px;
+}
+div#root {
+   
+  
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 82%;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow:  7px 7px 14px #aaaaaa,
+             -7px -7px 14px #ffffff;
+}
+button.m-2.p-1 {
+    border-radius: 16px;
+    background: #eacdcd;
+    box-shadow: inset 10px 10px 19px #c0a8a8, inset -10px -10px 19px #fff2f2;
 }
