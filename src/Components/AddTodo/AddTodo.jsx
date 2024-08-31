@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import TodoContext from "../Context/TodoContext";
 
 
-function AddTodo({addTodos}){
+function AddTodo(){
 
+const {todos, setTodos} = useContext(TodoContext);
 
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter') {
-        console.log('Enter key pressed');
-        // Add your functionality here u want to add enter press ur data add
-        addTodos(todoText);
-        setTodoText(' ');
-      }
-    };
-
-
-    const [todoText, setTodoText] = useState('');
+   const [todoText, setTodoText] = useState('');
+  const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          console.log('Enter key pressed');
+          // Add your functionality here u want to add enter press ur data add
+          let nextId= todos.length + 1;
+         setTodos([...todos, {id: nextId, isFinited: false, text: todoText}]);
+         setTodoText(' '); 
+        }
+      };
 
   return(
       <>
@@ -25,10 +26,10 @@ function AddTodo({addTodos}){
             type="text"
             onKeyDown={handleKeyDown}
         />
-        <button className="m-2 p-1 rounded-lg"
-        
+        <button className="m-2 p-1 rounded-lg"       
         onClick={() => {
-          addTodos(todoText);
+         let nextId= todos.length + 1;
+         setTodos([...todos, {id: nextId, isFinited: false, text: todoText}]);
           setTodoText(' '); 
           
         }}

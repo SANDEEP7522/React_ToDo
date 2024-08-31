@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import ToDo from '../ToDo/ToDo';
 import './ToDOList.css'
+import TodoContext from '../Context/TodoContext';
 
 
-function ToDOList({todos, setTodos}){
+function ToDOList(){
 
+   const {todos, setTodos} = useContext(TodoContext);
 
     function onDeleteTodo(id){
        const newTodoList = todos.filter(todo => todo.id != id);
@@ -21,6 +24,15 @@ function ToDOList({todos, setTodos}){
         setTodos(newTodoList);
     }  
        
+    function onFinishTodo(id, state){
+        const newTodoList = todos.map(todo => {
+            if (todo.id == id) {
+                todo.isFenished = state;
+            }
+            return todo;
+        });
+        setTodos(newTodoList);
+    }
    
 
     return(
@@ -31,6 +43,7 @@ function ToDOList({todos, setTodos}){
              isFenished={todo.isFenished} 
              editTodo={(newTodo) => onEditTodo(todo.id, newTodo)}
              deleteTodo={() => onDeleteTodo(todo.id)}
+             finishTodo={(state) => onFinishTodo(todo.id, state)}
             />)
     );
 }

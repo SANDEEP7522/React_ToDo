@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ToDo({editTodo, deleteTodo, text, isFinised}){
+function ToDo({ finishTodo, editTodo, deleteTodo, text, isFinised}){
 
     const [isEditting, setIsEditting] = useState(false);
     const [todoText, setTodoText] = useState(text);
@@ -8,9 +8,10 @@ function ToDo({editTodo, deleteTodo, text, isFinised}){
 return(
     <div>
 
-        <input type="checkbox" checked={isFinised} />
+        <input type="checkbox" checked={isFinised} 
+        onChange={() => finishTodo(!isFinised)} />
        
-        {isEditting? <input onChange={(e) => setTodoText(e.target.value)}
+        {isEditting? <input value={todoText} onChange={(e) => setTodoText(e.target.value)}
          /> :  <span> {todoText} </span>}
         
         <button  className="m-2 p-1 rounded-lg "
